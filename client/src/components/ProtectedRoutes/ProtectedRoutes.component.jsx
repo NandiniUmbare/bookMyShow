@@ -10,13 +10,12 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { GetCurrentUser } from "../../api/users";
-import userSlice, { SetUser } from "../../redux/userSlice";
+import { SetUser } from "../../redux/userSlice";
 import { message, Layout, Menu } from "antd";
 import {ShowLoading, HideLoading} from "../../redux/loaderSlice";
 
 export const ProtectedRoute = ({ children }) => {
   const { user } = useSelector((state) => state.users);
-  const {loading} = useSelector(state => state.loaders)
   
   const dispatch = useDispatch();
   const navigate = useNavigate();

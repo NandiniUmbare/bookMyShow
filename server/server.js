@@ -27,8 +27,7 @@ const appLimiter = rateLimit({
 app.use(cors({
     origin: '*', //allow frontend origin
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],//methods to allowed
-    allowedHeaders: ["content-Type", "Authorization"] //headres to allowed
-
+    allowedHeaders: ['Content-Type', 'Authorization'] //headres to allowed
 }))
 const clientBuildPath = path.join(__dirname, '../client/build');
 connectDB();
