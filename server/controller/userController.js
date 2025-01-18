@@ -124,7 +124,6 @@ const forgetPassword = async(req, res) => {
 const resetPassword = async(req, res) => {
     try {
         const resetDetails = req.body;
-        console.log(resetDetails)
         if(!resetDetails.password || !resetDetails.otp){
             res.status(401).json({
                 success: false,
@@ -144,7 +143,9 @@ const resetPassword = async(req, res) => {
                 message: 'OTP expired.'
             });
         }
-        user.password = resetDetails.password;
+        const saltRounds = 10;
+        const hashedPasswerd = await bcrypt.hash(resetDetails.password, saltRounds);
+        user.password = hashedPasswerd;
         user.otp = undefined;
         user.otpExpiry = undefined;
         await user.save();
