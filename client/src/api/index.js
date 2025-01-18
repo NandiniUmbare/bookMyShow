@@ -4,7 +4,7 @@ export const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  baseURL: "/",
+  baseURL: "https://bookmyshow-b2j2.onrender.com/",
 });
 
 axiosInstance.interceptors.request.use(
