@@ -7,7 +7,6 @@ import { loginUser } from '../../api/users'
 export const Login = () => {
   const nevigate = useNavigate();
   const onFinish = async (values) => {
-    console.log(values);
     try {
       const response = await loginUser(values)
       if (response.success) {

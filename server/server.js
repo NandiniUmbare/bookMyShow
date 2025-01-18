@@ -33,7 +33,7 @@ app.use(express.static(clientBuildPath));
 app.use(mongoSanitize());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-app.use('*', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(clientBuildPath, 'index.html'));
 })
 app.use('/api/', appLimiter);
