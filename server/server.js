@@ -3,6 +3,7 @@ const app = express();
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const path = require('path');
+const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
 require('dotenv').config();
 const connectDB = require('./config/db');
@@ -19,6 +20,12 @@ const appLimiter = rateLimit({
     message: "Too many attempts from this IP. please try again!"
 });
 
+app.use(cors({
+    origin: '*', //allow frontend origin
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],//methods to allowed
+    allowedHeaders: ["content-Type", "Authorization"] //headres to allowed
+
+}))
 const clientBuildPath = path.join(__dirname, '../client/build');
 connectDB();
 app.use(helmet());
