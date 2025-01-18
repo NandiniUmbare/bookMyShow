@@ -19,7 +19,7 @@ const appLimiter = rateLimit({
     Limit: 100, //how many attempts
     message: "Too many attempts from this IP. please try again!"
 });
-
+app.set("trust proxy", true);
 app.use(cors({
     origin: '*', //allow frontend origin
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],//methods to allowed
