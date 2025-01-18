@@ -13,13 +13,17 @@ const theatreRouter = require('./routes/theatreRoutes');
 const showRouter = require('./routes/showRoutes');
 const bookShowRouter = require('./routes/bookShowRoutes');
 
+app.set("trust proxy", 1);
 // to secure from DOS attack (denial of service)
 const appLimiter = rateLimit({
     windowMs: 15*60*1000, // 15 minutes
     Limit: 100, //how many attempts
+    keyGenerator: (req) => {
+        // Use req.ip, which considers trust proxy settings
+        return req.ip;
+    },
     message: "Too many attempts from this IP. please try again!"
 });
-app.set("trust proxy", true);
 app.use(cors({
     origin: '*', //allow frontend origin
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],//methods to allowed
