@@ -13,7 +13,7 @@ const auth = (req, res, next )=>{
             if (err) {
                 return res.status(403).json({ message: 'Invalid token' });
             }
-            req.body.userId = decoded;  // Attach decoded user data to request
+            req.user = decoded;  // Attach decoded user data to request
             next();  // Proceed to the protected route
         });
     } catch (error) {
