@@ -37,7 +37,6 @@ app.use(helmet({
     contentSecurityPolicy: false  // Disable CSP for React app
 }));
 
-app.use(express.static(clientBuildPath));
 app.use(mongoSanitize());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
